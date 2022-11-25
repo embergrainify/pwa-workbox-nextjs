@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+openssl req -x509 -nodes -new -sha256 -days 5120 -newkey rsa:4096 -keyout RootCA.key -out RootCA.pem -subj "/C=TH/O=Grainify/OU=Ember/CN=RootCA for Grainify"
+openssl x509 -outform pem -in RootCA.pem -out RootCA.crt

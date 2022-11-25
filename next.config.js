@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
-const basePath = process.env.NODE_ENV === 'production' ? '/pwa-workbox-nextjs' : '';
+// const basePath = process.env.NODE_ENV === 'production' ? '/pwa-workbox-nextjs' : '';
+const basePath = '/pwa-workbox-nextjs';
 
 const nextConfig = {
   reactStrictMode: true,
