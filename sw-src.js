@@ -1,10 +1,36 @@
 // import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute';
-import { registerRoute, Route } from 'workbox-routing';
-import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
-import { ExpirationPlugin } from 'workbox-expiration';
+// import { registerRoute, Route } from 'workbox-routing';
+// import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
+// import { ExpirationPlugin } from 'workbox-expiration';
 
 // precacheAndRoute(self.__WB_MANIFEST);
 
+
+//https://developer.chrome.com/docs/workbox/modules/workbox-sw/
+
+// copy workbox by
+// https://developer.chrome.com/docs/workbox/modules/workbox-sw/#using-local-workbox-files-instead-of-cdn
+// run npx workbox-cli copyLibraries third_party/workbox/
+importScripts('workbox-v6.5.4/workbox-sw.js');
+workbox.setConfig({
+    modulePathPrefix: 'workbox-v6.5.4/',
+});
+
+const { registerRoute, Route } = workbox.routing;
+const { CacheFirst, StaleWhileRevalidate } = workbox.strategies;
+const { CacheableResponse } = workbox.cacheableResponse;
+const { ExpirationPlugin } = workbox.expiration;
+
+const cacheName = 'pwa_workbox_nextjs_v1';
+console.log('yo')
+self.addEventListener('install', (event) => {
+    console.log('install');
+    event.waitUntil(caches.open(cacheName));
+});
+
+self.addEventListener('activate', (event) => {
+    console.log('activate');
+});
 
 const imageRoute = new Route(({ request }) => {
     return request.destination === 'image'

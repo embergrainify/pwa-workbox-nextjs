@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { Workbox } from 'workbox-window';
 
@@ -20,8 +21,8 @@ export default function Home() {
 
   const didRunOnce = useRef(false);
   useEffect(() => {
-    console.log('didRunOnce');
     if (!didRunOnce.current) {
+      console.log('didRunOnce');
       didRunOnce.current = true;
       wbregister();
     }
@@ -38,7 +39,7 @@ export default function Home() {
       <h1 className="text-3xl font-bold">
         test
       </h1>
-
+      <img src={`${process.env.basePath}/vercel.svg`} alt='vercel logo' width={80} height={30}/>
     </div>
   )
 }
