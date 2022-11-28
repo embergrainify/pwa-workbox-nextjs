@@ -14,6 +14,7 @@
 importScripts('workbox-v6.5.4/workbox-sw.js');
 workbox.setConfig({
     modulePathPrefix: 'workbox-v6.5.4/',
+    debug: true
 });
 
 const { registerRoute, Route } = workbox.routing;
@@ -32,8 +33,16 @@ self.addEventListener('activate', (event) => {
     console.log('activate');
 });
 
+self.addEventListener('message', (event) => {
+    console.log('message', event);
+    // if (event.data && event.data.type === 'SKIP_WAITING') {
+    //     self.skipWaiting();
+    // }
+});
+
 const imageRoute = new Route(({ request }) => {
-    return request.destination === 'image'
+    console.log('inside imageRoute');
+    return request.destination === 'image';
 }, new StaleWhileRevalidate({
     cacheName: 'images',
     plugins: [
@@ -44,6 +53,7 @@ const imageRoute = new Route(({ request }) => {
 }));
 
 const stylesRoute = new Route(({ request }) => {
+    console.log('inside stylesRoute');
     return request.destination === 'style';
 }, new CacheFirst({
     cacheName: 'styles',
