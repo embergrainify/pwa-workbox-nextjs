@@ -3,7 +3,7 @@ import { generateSW } from 'workbox-build';
 generateSW({
   globDirectory: 'public/',
   globPatterns: [
-    '**/*.{css,woff2,png,svg,jpg,js}'
+    '**/*.{css,woff2,png,jpg}'
   ],
   swDest: 'public/sw.js'
 }).then(({ count, size, warnings }) => {

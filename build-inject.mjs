@@ -3,7 +3,7 @@ import { injectManifest } from 'workbox-build';
 injectManifest({
   globDirectory: 'public/',
   globPatterns: [
-    '**/*.{css,woff2,png,svg,jpg}'
+    '**/*.{css,woff2,png,jpg}'
   ],
   swDest: 'public/sw.js',
   swSrc: 'sw-src.js'
